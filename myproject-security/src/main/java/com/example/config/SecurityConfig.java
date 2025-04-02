@@ -16,6 +16,7 @@ import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.access.intercept.AuthorizationFilter;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
 @EnableWebSecurity
@@ -64,14 +65,14 @@ public class SecurityConfig {
                         "/doc.html/**","/v3/api-docs/**","/swagger-ui.html/**",
                         "/project/admin/login","/project/admin/register")
                         .permitAll()  //自定义的登录接口不需要验证
-//                .anyRequest().authenticated()
+                .anyRequest().authenticated()
                 )
                 .csrf(csrf->csrf.disable())
                 .formLogin(form->form.disable())
                 .sessionManagement(session->session.disable())
-                .exceptionHandling(execption->execption.authenticationEntryPoint(authenticationEntryPoint)
-                        .accessDeniedHandler(accessDeniedHandler))
-                .addFilterBefore(jwtAuthenticationFilter, AuthorizationFilter.class);
+                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)  // 先配置过滤器
+                .exceptionHandling(execption->execption.authenticationEntryPoint(authenticationEntryPoint)  // 后配置异常处理
+                        .accessDeniedHandler(accessDeniedHandler));
 
         return http.build();
     }

@@ -25,7 +25,7 @@
     <!-- dev 环境（仅输出到控制台） -->
     <springProfile name="dev">
         <include resource="org/springframework/boot/logging/logback/console-appender.xml" />
-        <root level="info">
+        <root level="debug">
             <appender-ref ref="CONSOLE" />
             <appender-ref ref="FILE" />
         </root>

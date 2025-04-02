@@ -18,6 +18,8 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 
 
@@ -31,10 +33,25 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     private TokenService tokenService;
 
 
+    // 定义白名单路径
+    private static final List<String> WHITE_LIST = Arrays.asList(
+            "/project/admin/login",
+            "/project/admin/register"
+    );
+
 
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
+
+        String requestURI = request.getRequestURI();
+
+        // 白名单路径直接放行
+        if (WHITE_LIST.contains(requestURI)) {
+            filterChain.doFilter(request, response);
+            return;
+        }
+
 
         //获取请求头中的token
         String token = request.getHeader("access_token");
