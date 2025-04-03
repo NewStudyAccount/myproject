@@ -16,6 +16,17 @@ import org.springframework.stereotype.Service;
 public class SysArticleServiceImpl extends ServiceImpl<SysArticleMapper, SysArticle>
     implements SysArticleService {
 
+    /**
+     * 新建文章，打开一个页面，输入标题，分类等。点击创建，
+     * @param sysArticle
+     * @return
+     */
+    @Override
+    public int saveArticle(SysArticle sysArticle) {
+
+
+        return 0;
+    }
 }
 
 

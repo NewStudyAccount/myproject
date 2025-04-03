@@ -108,6 +108,12 @@
                 <version>4.4.0</version>
             </dependency>
 
+            <!-- https://mvnrepository.com/artifact/com.vladsch.flexmark/flexmark-all -->
+            <dependency>
+                <groupId>com.vladsch.flexmark</groupId>
+                <artifactId>flexmark-all</artifactId>
+                <version>0.64.8</version>
+            </dependency>
 
         </dependencies>
     </dependencyManagement>

@@ -3,6 +3,7 @@ package com.example.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.example.domain.SysArticleContent;
+import com.example.domain.vo.SysArticleContentVo;
 
 /**
 * @author QJJ
@@ -11,4 +12,9 @@ import com.example.domain.SysArticleContent;
 */
 public interface SysArticleContentService extends IService<SysArticleContent> {
 
+    public int saveArticleContent(SysArticleContent sysArticleContent);
+
+    public SysArticleContent getArticleContent(Long articleId);
+
+    public SysArticleContentVo getArticleContentWithConvert(Long articleId);
 }

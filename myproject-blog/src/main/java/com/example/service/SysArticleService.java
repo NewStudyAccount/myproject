@@ -11,4 +11,6 @@ import com.example.domain.SysArticle;
 */
 public interface SysArticleService extends IService<SysArticle> {
 
+    public int saveArticle(SysArticle sysArticle);
+
 }
