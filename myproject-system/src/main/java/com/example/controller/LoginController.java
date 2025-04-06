@@ -1,6 +1,7 @@
 package com.example.controller;
 
 
+import com.example.aspect.ApiOperationLog;
 import com.example.domain.ResponseModel;
 import com.example.domain.vo.LoginUserVo;
 import com.example.service.LoginService;
@@ -20,6 +21,8 @@ public class LoginController {
     @Autowired
     private LoginService loginService;
 
+
+    @ApiOperationLog(description = "登录接口")
     @Operation(summary = "登录接口")
     @PostMapping("/admin/login")
     public ResponseModel login(@RequestBody LoginUserVo loginUserVo){

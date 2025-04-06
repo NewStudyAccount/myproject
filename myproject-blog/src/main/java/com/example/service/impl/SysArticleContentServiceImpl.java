@@ -6,7 +6,6 @@ import com.example.domain.SysArticleContent;
 import com.example.domain.vo.SysArticleContentVo;
 import com.example.mapper.SysArticleContentMapper;
 import com.example.service.SysArticleContentService;
-import com.example.utils.MarkDownUtil;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
@@ -19,11 +18,22 @@ import org.springframework.stereotype.Service;
 public class SysArticleContentServiceImpl extends ServiceImpl<SysArticleContentMapper, SysArticleContent>
     implements SysArticleContentService {
 
+
+    /**
+     * 新增文章信息
+     * @param sysArticleContent
+     * @return
+     */
     @Override
     public int saveArticleContent(SysArticleContent sysArticleContent) {
         return this.baseMapper.insert(sysArticleContent);
     }
 
+    /**
+     * 查询原始文章内容
+     * @param articleId
+     * @return
+     */
     @Override
     public SysArticleContent getArticleContent(Long articleId) {
 
@@ -32,6 +42,12 @@ public class SysArticleContentServiceImpl extends ServiceImpl<SysArticleContentM
         return sysArticleContent;
     }
 
+
+    /**
+     * 查询文章信息，转换markdown信息
+     * @param articleId
+     * @return
+     */
     @Override
     public SysArticleContentVo getArticleContentWithConvert(Long articleId) {
         SysArticleContent sysArticleContent = this.lambdaQuery().eq(SysArticleContent::getArticleId, articleId).one();

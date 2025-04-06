@@ -24,6 +24,8 @@ public class SysArticleServiceImpl extends ServiceImpl<SysArticleMapper, SysArti
     @Override
     public int saveArticle(SysArticle sysArticle) {
 
+        this.baseMapper.insert(sysArticle);
+
 
         return 0;
     }
