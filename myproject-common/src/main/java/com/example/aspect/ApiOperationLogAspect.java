@@ -14,8 +14,8 @@ import java.util.UUID;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-@Aspect
 @Component
+@Aspect
 @Slf4j
 public class ApiOperationLogAspect {
 
