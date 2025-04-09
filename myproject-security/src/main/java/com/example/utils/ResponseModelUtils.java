@@ -1,14 +1,14 @@
 package com.example.utils;
 
 import com.alibaba.fastjson2.JSON;
-import com.example.domain.ResponseModel;
+import com.example.domain.Response;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 import java.io.PrintWriter;
 
 public class ResponseModelUtils {
-    public static void write(HttpServletResponse response, ResponseModel responseModel) throws IOException {
+    public static void write(HttpServletResponse response, Response responseModel) throws IOException {
         //响应头设置，json
         response.setContentType("application/json");
         response.setCharacterEncoding("utf-8");

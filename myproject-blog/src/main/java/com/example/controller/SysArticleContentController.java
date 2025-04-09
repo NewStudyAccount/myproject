@@ -1,6 +1,6 @@
 package com.example.controller;
 
-import com.example.domain.ResponseModel;
+import com.example.domain.Response;
 import com.example.domain.dao.SysArticleContent;
 import com.example.domain.req.SysArticleContentReq;
 import com.example.domain.vo.SysArticleContentVo;
@@ -18,11 +18,11 @@ public class SysArticleContentController {
 
 
     @PostMapping("/article/content/queryById")
-    public ResponseModel queryArticleContentWithConvert(@RequestBody SysArticleContentReq articleContentReq) {
+    public Response queryArticleContentWithConvert(@RequestBody SysArticleContentReq articleContentReq) {
 
         SysArticleContentVo articleContentWithConvert = sysArticleContentService.getArticleContentWithConvert(articleContentReq.getArticleId());
 
-        return ResponseModel.success(articleContentWithConvert);
+        return Response.success(articleContentWithConvert);
     }
 
 

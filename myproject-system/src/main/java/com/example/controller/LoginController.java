@@ -2,7 +2,7 @@ package com.example.controller;
 
 
 import com.example.aspect.ApiOperationLog;
-import com.example.domain.ResponseModel;
+import com.example.domain.Response;
 import com.example.domain.vo.LoginUserVo;
 import com.example.service.LoginService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -25,9 +25,9 @@ public class LoginController {
     @ApiOperationLog(description = "登录接口")
     @Operation(summary = "登录接口")
     @PostMapping("/admin/login")
-    public ResponseModel login(@RequestBody LoginUserVo loginUserVo){
+    public Response login(@RequestBody LoginUserVo loginUserVo){
 
-        ResponseModel login = loginService.login(loginUserVo);
+        Response login = loginService.login(loginUserVo);
         return login;
     }
 

@@ -1,6 +1,6 @@
 package com.example.controller;
 
-import com.example.domain.ResponseModel;
+import com.example.domain.Response;
 import com.example.domain.vo.UserVo;
 import com.example.service.SysUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,18 +17,18 @@ public class AdminController {
     private SysUserService sysUserService;
 
     @PostMapping("/register")
-    public ResponseModel registerUser(@RequestBody UserVo userVo){
+    public Response registerUser(@RequestBody UserVo userVo){
 
         int register = sysUserService.register(userVo);
-        return ResponseModel.success("注册成功",register);
+        return Response.success("注册成功",register);
     }
 
 
     @PostMapping("/hello")
-    public ResponseModel hello(){
+    public Response hello(){
 
 
-        return ResponseModel.success("success","hello");
+        return Response.success("success","hello");
     }
 
 

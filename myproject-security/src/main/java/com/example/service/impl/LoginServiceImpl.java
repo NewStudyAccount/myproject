@@ -2,7 +2,7 @@ package com.example.service.impl;
 
 
 import com.example.domain.MyUserDetails;
-import com.example.domain.ResponseModel;
+import com.example.domain.Response;
 import com.example.domain.vo.LoginUserVo;
 import com.example.service.LoginService;
 import com.example.service.TokenService;
@@ -24,7 +24,7 @@ public class LoginServiceImpl implements LoginService {
     private TokenService tokenService;
 
     @Override
-    public ResponseModel login(LoginUserVo loginUserVo) {
+    public Response login(LoginUserVo loginUserVo) {
 
         String userName = loginUserVo.getUserName();
         String password = loginUserVo.getPassword();
@@ -39,11 +39,11 @@ public class LoginServiceImpl implements LoginService {
             //认证成功,生成token返回
             MyUserDetails myUserDetails = (MyUserDetails) authenticate.getPrincipal();
             String token = tokenService.createToken(myUserDetails);
-            return ResponseModel.success("登录成功",token);
+            return Response.success("登录成功",token);
 
         }else {
             //认证失败
-            return ResponseModel.authFailure("登录失败");
+            return Response.authFailure("登录失败");
         }
 
 

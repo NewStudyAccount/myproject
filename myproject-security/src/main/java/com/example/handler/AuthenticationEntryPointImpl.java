@@ -2,7 +2,7 @@ package com.example.handler;
 
 
 
-import com.example.domain.ResponseModel;
+import com.example.domain.Response;
 import com.example.utils.ResponseModelUtils;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -17,11 +17,8 @@ public class AuthenticationEntryPointImpl implements AuthenticationEntryPoint {
 
     @Override
     public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException e)
-            throws IOException
-    {
-
-
-        ResponseModel responseModel = ResponseModel.authFailure(e.getMessage());
+            throws IOException {
+        Response responseModel = Response.authFailure(e.getMessage());
         ResponseModelUtils.write(response,responseModel);
     }
 }

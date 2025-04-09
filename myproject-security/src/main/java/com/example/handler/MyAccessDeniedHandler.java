@@ -2,7 +2,7 @@ package com.example.handler;
 
 
 
-import com.example.domain.ResponseModel;
+import com.example.domain.Response;
 import com.example.utils.ResponseModelUtils;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -18,7 +18,7 @@ public class MyAccessDeniedHandler implements AccessDeniedHandler {
     @Override
     public void handle(HttpServletRequest request, HttpServletResponse response, AccessDeniedException accessDeniedException) throws IOException, ServletException {
 
-        ResponseModel responseModel = ResponseModel.accessDenied(accessDeniedException.getMessage());
+        Response responseModel = Response.accessDenied(accessDeniedException.getMessage());
         ResponseModelUtils.write(response,responseModel);
     }
 }
