@@ -11,4 +11,12 @@ import com.example.domain.SysRole;
 */
 public interface SysRoleService extends IService<SysRole> {
 
+    int addRole(SysRole sysRole);
+
+    void updateRole(SysRole sysRole);
+
+    int deleteRole(Long roleId);
+
+
+
 }

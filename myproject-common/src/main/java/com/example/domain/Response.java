@@ -47,6 +47,13 @@ public class Response<T>{
         return response;
     }
 
+    public static<T> Response<T> fail(String msg) {
+        Response<T> response = new Response<>();
+        response.setCode("8888");
+        response.setMsg(msg);
+        return response;
+    }
+
 
     public static<T> Response<T> success(T data) {
         return new Response<T>("200", "success", data);

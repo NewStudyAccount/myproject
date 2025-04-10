@@ -27,7 +27,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler({ BizException.class })
     @ResponseBody
     public Response<Object> handleBizException(BizException e) {
-        return Response.fail(e);
+        return Response.fail(e.getMessage());
     }
 
 
