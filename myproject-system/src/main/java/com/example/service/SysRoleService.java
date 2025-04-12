@@ -3,6 +3,9 @@ package com.example.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.example.domain.SysRole;
+import com.example.domain.req.SysRoleAddReq;
+import com.example.domain.req.SysRoleUpdateReq;
+import com.example.domain.vo.SysRoleVo;
 
 /**
 * @author QJJ
@@ -11,9 +14,12 @@ import com.example.domain.SysRole;
 */
 public interface SysRoleService extends IService<SysRole> {
 
-    int addRole(SysRole sysRole);
 
-    void updateRole(SysRole sysRole);
+    SysRoleVo queryByRoleId(Long roleId);
+
+    void addRole(SysRoleAddReq sysRole);
+
+    void updateRole(SysRoleUpdateReq sysRole);
 
     int deleteRole(Long roleId);
 
