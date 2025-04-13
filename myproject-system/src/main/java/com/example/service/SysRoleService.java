@@ -15,9 +15,15 @@ import com.example.domain.vo.SysRoleVo;
 public interface SysRoleService extends IService<SysRole> {
 
 
+
+    void queryRoleListPage();
+
+    void queryRoleList();
+
+
     SysRoleVo queryByRoleId(Long roleId);
 
-    void addRole(SysRoleAddReq sysRole);
+    int addRole(SysRoleAddReq sysRole);
 
     void updateRole(SysRoleUpdateReq sysRole);
 

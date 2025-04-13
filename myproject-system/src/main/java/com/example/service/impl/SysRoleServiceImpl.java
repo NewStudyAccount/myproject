@@ -1,7 +1,9 @@
 package com.example.service.impl;
 
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.example.domain.PageQuery;
 import com.example.domain.SysRole;
 import com.example.domain.req.SysRoleAddReq;
 import com.example.domain.req.SysRoleUpdateReq;
@@ -11,6 +13,8 @@ import com.example.service.SysRoleService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
+
+import java.util.List;
 
 /**
 * @author QJJ
@@ -22,6 +26,18 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole>
     implements SysRoleService {
 
     @Override
+    public void queryRoleListPage(PageQuery pageQuery) {
+        IPage<SysRole> page = this.lambdaQuery().eq().page(pageQuery);
+
+
+    }
+
+    @Override
+    public void queryRoleList() {
+
+    }
+
+    @Override
     public SysRoleVo queryByRoleId(Long roleId) {
         SysRole sysRole = this.lambdaQuery().eq(SysRole::getRoleId, roleId).one();
         SysRoleVo sysRoleVo = new SysRoleVo();
@@ -30,7 +46,7 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole>
     }
 
     @Override
-    public void addRole(SysRoleAddReq sysRoleAddReq) {
+    public int addRole(SysRoleAddReq sysRoleAddReq) {
         SysRole sysRole = new SysRole();
         BeanUtils.copyProperties(sysRoleAddReq, sysRole);
         return this.baseMapper.insert(sysRole);
