@@ -3,7 +3,9 @@ package com.example.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.example.domain.SysRole;
+import com.example.domain.TableDataInfo;
 import com.example.domain.req.SysRoleAddReq;
+import com.example.domain.req.SysRoleQueryPageReq;
 import com.example.domain.req.SysRoleUpdateReq;
 import com.example.domain.vo.SysRoleVo;
 
@@ -16,7 +18,7 @@ public interface SysRoleService extends IService<SysRole> {
 
 
 
-    void queryRoleListPage();
+    TableDataInfo<SysRole> queryRoleListPage(SysRoleQueryPageReq sysRoleQueryPageReq);
 
     void queryRoleList();
 

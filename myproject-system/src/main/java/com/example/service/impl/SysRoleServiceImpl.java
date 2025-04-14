@@ -2,15 +2,19 @@ package com.example.service.impl;
 
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.domain.PageQuery;
 import com.example.domain.SysRole;
+import com.example.domain.TableDataInfo;
 import com.example.domain.req.SysRoleAddReq;
+import com.example.domain.req.SysRoleQueryPageReq;
 import com.example.domain.req.SysRoleUpdateReq;
 import com.example.domain.vo.SysRoleVo;
 import com.example.mapper.SysRoleMapper;
 import com.example.service.SysRoleService;
 import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
@@ -25,9 +29,16 @@ import java.util.List;
 public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole>
     implements SysRoleService {
 
+    @Autowired
+    private SysRoleMapper sysRoleMapper;
+
     @Override
-    public void queryRoleListPage(PageQuery pageQuery) {
-        IPage<SysRole> page = this.lambdaQuery().eq().page(pageQuery);
+    public TableDataInfo<SysRole> queryRoleListPage(SysRoleQueryPageReq sysRoleQueryPageReq) {
+//        IPage<SysRole> page = this.lambdaQuery().page(sysRoleQueryPageReq.getPageQuery());
+
+        Page<SysRole> sysRolePage = sysRoleMapper.selectPage(sysRoleQueryPageReq.getPageQuery().build(), null);
+        TableDataInfo<SysRole> build = TableDataInfo.build(sysRolePage);
+        return build;
 
 
     }

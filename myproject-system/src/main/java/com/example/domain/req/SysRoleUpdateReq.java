@@ -12,13 +12,11 @@ public class SysRoleUpdateReq {
     /**
      * 角色id
      */
-    @TableId(type = IdType.AUTO,value = "role_id")
     private Long roleId;
 
     /**
      * 角色名
      */
-    @TableField(value = "role_name")
     private String roleName;
 
 }

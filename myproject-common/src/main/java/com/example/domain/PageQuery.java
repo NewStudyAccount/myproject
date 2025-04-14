@@ -32,16 +32,6 @@ public class PageQuery implements Serializable {
     private Integer pageNum;
 
     /**
-     * 排序列
-     */
-    private String orderByColumn;
-
-    /**
-     * 排序的方向desc或者asc
-     */
-    private String isAsc;
-
-    /**
      * 当前记录起始索引 默认值
      */
     public static final int DEFAULT_PAGE_NUM = 1;
@@ -53,7 +43,7 @@ public class PageQuery implements Serializable {
 
     public <T> Page<T> build() {
         Integer pageNum = Objects.isNull(getPageNum())?DEFAULT_PAGE_NUM:getPageNum();
-        Integer pageSize = Objects.isNull(getPageSize())?DEFAULT_PAGE_NUM:getPageSize();
+        Integer pageSize = Objects.isNull(getPageSize())?DEFAULT_PAGE_SIZE:getPageSize();
         if (pageNum <= 0) {
             pageNum = DEFAULT_PAGE_NUM;
         }

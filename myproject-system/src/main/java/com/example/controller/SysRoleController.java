@@ -2,7 +2,10 @@ package com.example.controller;
 
 
 import com.example.domain.Response;
+import com.example.domain.SysRole;
+import com.example.domain.TableDataInfo;
 import com.example.domain.req.SysRoleAddReq;
+import com.example.domain.req.SysRoleQueryPageReq;
 import com.example.domain.req.SysRoleUpdateReq;
 import com.example.domain.vo.SysRoleVo;
 import com.example.service.SysRoleService;
@@ -18,6 +21,10 @@ public class SysRoleController {
     @Autowired
     private SysRoleService roleService;
 
+    public Response queryRoleListPage(@RequestBody SysRoleQueryPageReq sysRoleQueryPageReq) {
+        TableDataInfo<SysRole> sysRoleTableDataInfo = roleService.queryRoleListPage(sysRoleQueryPageReq);
+        return sysRoleTableDataInfo;
+    }
 
 
     @PostMapping("/add")
