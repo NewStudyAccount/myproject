@@ -21,7 +21,8 @@ public class SysRoleController {
     @Autowired
     private SysRoleService roleService;
 
-    public Response queryRoleListPage(@RequestBody SysRoleQueryPageReq sysRoleQueryPageReq) {
+    @PostMapping("/queryPage")
+    public TableDataInfo queryRoleListPage(@RequestBody SysRoleQueryPageReq sysRoleQueryPageReq) {
         TableDataInfo<SysRole> sysRoleTableDataInfo = roleService.queryRoleListPage(sysRoleQueryPageReq);
         return sysRoleTableDataInfo;
     }

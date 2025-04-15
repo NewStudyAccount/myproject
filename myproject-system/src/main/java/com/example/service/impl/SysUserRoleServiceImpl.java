@@ -3,8 +3,11 @@ package com.example.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.domain.SysUserRole;
+import com.example.domain.req.sysUserRole.SysUserRoleAddReq;
 import com.example.mapper.SysUserRoleMapper;
 import com.example.service.SysUserRoleService;
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -16,6 +19,33 @@ import org.springframework.stereotype.Service;
 public class SysUserRoleServiceImpl extends ServiceImpl<SysUserRoleMapper, SysUserRole>
     implements SysUserRoleService {
 
+    @Autowired
+    private SysUserRoleMapper sysUserRoleMapper;
+
+
+
+    @Override
+    public void queryUserRolePage() {
+
+    }
+
+    @Override
+    public void queryUserRoleList() {
+
+    }
+
+    @Override
+    public void addUserRole(SysUserRoleAddReq sysUserRoleAddReq) {
+        SysUserRole sysUserRole = new SysUserRole();
+        BeanUtils.copyProperties(sysUserRoleAddReq,sysUserRole);
+        baseMapper.insert(sysUserRole);
+
+    }
+
+    @Override
+    public void deleteUserRole(Long id) {
+
+    }
 }
 
 
