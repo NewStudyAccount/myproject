@@ -5,6 +5,8 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.example.domain.SysUserRole;
 import com.example.domain.req.sysUserRole.SysUserRoleAddReq;
 
+import java.util.List;
+
 /**
 * @author QJJ
 * @description 针对表【sys_user_role(用户角色关联表)】的数据库操作Service
@@ -14,7 +16,7 @@ public interface SysUserRoleService extends IService<SysUserRole> {
 
     void queryUserRolePage();
 
-    void queryUserRoleList();
+    List<SysUserRole> queryUserRoleList(Long userId);
 
     void addUserRole(SysUserRoleAddReq sysUserRoleAddReq);
 

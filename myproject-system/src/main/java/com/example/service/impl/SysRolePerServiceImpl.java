@@ -5,7 +5,10 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.domain.SysRolePer;
 import com.example.mapper.SysRolePerMapper;
 import com.example.service.SysRolePerService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
 * @author QJJ
@@ -16,6 +19,19 @@ import org.springframework.stereotype.Service;
 public class SysRolePerServiceImpl extends ServiceImpl<SysRolePerMapper, SysRolePer>
     implements SysRolePerService {
 
+    @Autowired
+    private SysRolePerMapper sysRolePerMapper;
+
+    @Override
+    public int addRolePer(Long roleId, Long perId) {
+        SysRolePer sysRolePer = new SysRolePer(roleId,perId);
+        return this.sysRolePerMapper.insert(sysRolePer);
+    }
+
+    @Override
+    public List<SysRolePer> queryRolePerList(Long roleId) {
+        return this.lambdaQuery().eq(SysRolePer::getRoleId,roleId).list();
+    }
 }
 
 

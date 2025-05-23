@@ -5,7 +5,10 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
+
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * 角色权限表
@@ -13,6 +16,8 @@ import lombok.Data;
  */
 @TableName(value ="sys_role_per")
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class SysRolePer implements Serializable {
     /**
      * 
@@ -34,4 +39,11 @@ public class SysRolePer implements Serializable {
 
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
+
+
+
+    public SysRolePer(Long roleId, Long perId) {
+        this.roleId = roleId;
+        this.perId = perId;
+    }
 }
