@@ -3,7 +3,12 @@ package com.example.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.example.domain.SysUser;
+import com.example.domain.TableDataInfo;
+import com.example.domain.req.sysUser.SysUserQueryPageReq;
+import com.example.domain.vo.UserInfoVo;
 import com.example.domain.vo.UserVo;
+
+import java.util.List;
 
 /**
 * @author QJJ
@@ -13,4 +18,13 @@ import com.example.domain.vo.UserVo;
 public interface SysUserService extends IService<SysUser> {
 
     public int register(UserVo userVo);
+
+    TableDataInfo<SysUser> queryUserListPage(SysUserQueryPageReq sysUserQueryPageReq);
+
+//    List<String> queryUserInfoPermission(Long userId);
+
+    List<UserInfoVo> queryUserInfo(Long userId);
+
+
+
 }

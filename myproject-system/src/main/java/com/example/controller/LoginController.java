@@ -25,9 +25,9 @@ public class LoginController {
     @ApiOperationLog(description = "登录接口")
     @Operation(summary = "登录接口")
     @PostMapping("/admin/login")
-    public Response login(@RequestBody LoginUserVo loginUserVo){
+    public Response<?> login(@RequestBody LoginUserVo loginUserVo){
 
-        Response login = loginService.login(loginUserVo);
+        Response<?> login = loginService.login(loginUserVo);
         return login;
     }
 

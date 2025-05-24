@@ -6,6 +6,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * 不用于注册，需要改掉
+ */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

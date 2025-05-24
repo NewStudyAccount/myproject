@@ -22,33 +22,33 @@ public class SysRoleController {
     private SysRoleService roleService;
 
     @PostMapping("/queryPage")
-    public TableDataInfo queryRoleListPage(@RequestBody SysRoleQueryPageReq sysRoleQueryPageReq) {
+    public TableDataInfo<?> queryRoleListPage(@RequestBody SysRoleQueryPageReq sysRoleQueryPageReq) {
         TableDataInfo<SysRole> sysRoleTableDataInfo = roleService.queryRoleListPage(sysRoleQueryPageReq);
         return sysRoleTableDataInfo;
     }
 
 
     @PostMapping("/add")
-    public Response insertRole(@RequestBody @Validated SysRoleAddReq sysRoleAddReq) {
+    public Response<?> insertRole(@RequestBody @Validated SysRoleAddReq sysRoleAddReq) {
         roleService.addRole(sysRoleAddReq);
         return Response.success("新增成功");
     }
 
     @PostMapping("/update")
-    public Response updateRole(@RequestBody @Validated SysRoleUpdateReq sysRoleUpdateReq) {
+    public Response<?> updateRole(@RequestBody @Validated SysRoleUpdateReq sysRoleUpdateReq) {
         roleService.updateRole(sysRoleUpdateReq);
         return Response.success("更新成功");
     }
 
 
     @GetMapping("/query/{roleId}")
-    public Response queryRoleListById(@PathVariable("roleId")Long roleId) {
+    public Response<?> queryRoleListById(@PathVariable("roleId")Long roleId) {
         SysRoleVo sysRoleVo = roleService.queryByRoleId(roleId);
         return Response.success(sysRoleVo);
     }
 
 
-    public Response queryRoleList() {
+    public Response<?> queryRoleList() {
         return Response.success("查询成功");
     }
 }

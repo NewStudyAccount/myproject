@@ -1,6 +1,9 @@
 package com.example.controller;
 
 import com.example.domain.Response;
+import com.example.domain.SysUser;
+import com.example.domain.TableDataInfo;
+import com.example.domain.req.sysUser.SysUserQueryPageReq;
 import com.example.domain.vo.UserVo;
 import com.example.service.SysUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +33,18 @@ public class AdminController {
 
         return Response.success("success","hello");
     }
+
+
+    @PostMapping("/listUserPage")
+    public TableDataInfo<?> listUserPage(@RequestBody SysUserQueryPageReq sysUserQueryPageReq){
+
+        TableDataInfo<SysUser> sysUserTableDataInfo = sysUserService.queryUserListPage(sysUserQueryPageReq);
+
+        return sysUserTableDataInfo;
+    }
+
+
+
 
 
 }
