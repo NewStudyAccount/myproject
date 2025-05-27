@@ -6,7 +6,7 @@
 
 
     <select id="listMenuByUserId" resultType="com.example.domain.SysMenu">
-        select menu.menu_id, menu.meun_name, menu.per_code, menu.type, menu.sort, menu.parent_id, menu.path,
+        select menu.menu_id, menu.menu_name, menu.per_code, menu.type, menu.sort, menu.parent_id, menu.path,
                menu.component, menu.component_name
         from sys_menu menu
                  left join sys_role_menu role_menu on menu.menu_id = role_menu.meun_id
@@ -19,7 +19,7 @@
 
 
     <select id="listMenu" resultType="com.example.domain.SysMenu">
-        select menu.menu_id, menu.meun_name, menu.per_code, menu.type, menu.sort, menu.parent_id, menu.path,
+        select menu.menu_id, menu.menu_name, menu.per_code, menu.type, menu.sort, menu.parent_id, menu.path,
                menu.component, menu.component_name
         from sys_menu menu
         order by menu.parent_id,menu.sort

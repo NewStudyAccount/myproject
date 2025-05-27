@@ -17,7 +17,7 @@ public class SysMenu implements Serializable {
     /**
      * 菜单名称
      */
-    private String meunName;
+    private String menuName;
 
     /**
      * 权限code
