@@ -29,11 +29,11 @@
     <select id="listPermissionCodesByUserId" resultType="java.lang.String">
         select menu.per_code
         from sys_menu menu
-                 left join sys_role_menu role_menu on menu.menu_id = role_menu.meun_id
+                 left join sys_role_menu role_menu on role_menu.meun_id = menu.menu_id
                  left join sys_user_role user_role on user_role.role_id = role_menu.role_id
                  left join sys_role roles on roles.role_id = user_role.role_id
                  left join sys_user users on users.user_id = user_role.user_id
-        where user_role.user_id = #{userId}
+        where users.user_id = #{userId}
 
     </select>
 
