@@ -16,7 +16,7 @@ import java.util.List;
 public interface SysUserMapper extends BaseMapper<SysUser> {
 
 
-    List<String> queryPermissionByUserId(@Param("userId") Long userId);
+//    List<String> queryPermissionByUserId(@Param("userId") Long userId);
 
 }
 

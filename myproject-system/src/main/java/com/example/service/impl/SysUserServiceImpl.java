@@ -11,10 +11,12 @@ import com.example.domain.vo.UserInfoVo;
 import com.example.domain.vo.UserVo;
 import com.example.mapper.SysUserMapper;
 import com.example.service.*;
+import com.example.utils.SecurityFrameworkUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
@@ -44,11 +46,15 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser>
     private SysUserRoleService sysUserRoleService;
 
 
-    @Autowired
-    private SysRolePerService sysRolePerService;
+
 
     @Autowired
-    private SysPerService sysPerService;
+    private SysRoleMenuService sysRoleMenuService;
+
+
+    @Autowired
+    private SysMenuService sysMenuService;
+
 
     /**
      * 【Security】使用查询用户信息
@@ -74,52 +80,59 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser>
     @Override
     public List<String> getUserPermission(Long userId) {
 
-        //查询用户的所有角色
-        List<SysUserRole> sysUserRoles = sysUserRoleService.queryUserRoleList(userId);
+//        //查询用户的所有角色 sys_user_role
+//        List<SysUserRole> sysUserRoles = sysUserRoleService.queryUserRoleList(userId);
+//
+//        //多线程查出角色的所有权限信息
+//        List<CompletableFuture<Set<String>>> futures = new ArrayList<>();
+//        for (SysUserRole sysUserRole : sysUserRoles) {
+//            CompletableFuture<Set<String>> future = CompletableFuture.supplyAsync(() -> {
+//                return getPerCodeByRoleId(sysUserRole.getRoleId());
+//            }, threadPoolTaskExecutor).exceptionally(ex->{
+//                // 处理异常情况
+//                log.error("获取权限编码失败",ex);
+//                return Collections.emptySet();
+//            });
+//            futures.add(future);
+//        }
+//
+//        // 等待所有任务完成
+//        CompletableFuture<Void> allFutures = CompletableFuture.allOf(futures.toArray(new CompletableFuture[0]));
+//
+//
+//        // 提交所有异步任务，并合并去重
+//        CompletableFuture<List<String>> futureResult = allFutures.thenApply(v -> {
+//            return futures.stream()
+//                    .map(CompletableFuture::join)
+//                    .flatMap(Set::stream)
+//                    .distinct()
+//                    .collect(Collectors.toList());
+//        });
+//
+//        return futureResult.join(); // 同步返回最终结果（根据实际需求决定是否异步）
 
-        //多线程查出角色的所有权限信息
-        List<CompletableFuture<Set<String>>> futures = new ArrayList<>();
-        for (SysUserRole sysUserRole : sysUserRoles) {
-            CompletableFuture<Set<String>> future = CompletableFuture.supplyAsync(() -> {
-                return getPerCodeByRoleId(sysUserRole.getRoleId());
-            }, threadPoolTaskExecutor).exceptionally(ex->{
-                // 处理异常情况
-                log.error("获取权限编码失败",ex);
-                return Collections.emptySet();
-            });
-            futures.add(future);
-        }
 
-        // 等待所有任务完成
-        CompletableFuture<Void> allFutures = CompletableFuture.allOf(futures.toArray(new CompletableFuture[0]));
+        Long loginUserId = SecurityFrameworkUtils.getLoginUserId();
 
-
-        // 提交所有异步任务，并合并去重
-        CompletableFuture<List<String>> futureResult = allFutures.thenApply(v -> {
-            return futures.stream()
-                    .map(CompletableFuture::join)
-                    .flatMap(Set::stream)
-                    .distinct()
-                    .collect(Collectors.toList());
-        });
-
-        return futureResult.join(); // 同步返回最终结果（根据实际需求决定是否异步）
+        return sysMenuService.listPermissionCodesByUserId(userId);
     }
 
-    public Set<String> getPerCodeByRoleId(Long roleId) {
-
-        Set<String> perCodeSet = new HashSet<>();
-        List<SysRolePer> sysRolePers = sysRolePerService.queryRolePerList(roleId);
-        if (!CollectionUtils.isEmpty(sysRolePers)){
-            for (SysRolePer sysRolePer : sysRolePers) {
-                Long perId = sysRolePer.getPerId();
-                SysPerVo sysPerVo = sysPerService.queryByPerId(perId);
-                String perCode = sysPerVo.getPerCode();
-                perCodeSet.add(perCode);
-            }
-        }
-        return perCodeSet;
-    }
+//    public Set<String> getPerCodeByRoleId(Long roleId) {
+//
+//        Set<String> perCodeSet = new HashSet<>();
+//        //查角色-菜单表 role_menu
+//        List<SysRoleMenu> sysRoleMenus = sysRoleMenuService.listRoleMenuByRoleId(roleId);
+//
+//        if (!CollectionUtils.isEmpty(sysRoleMenus)){
+//            for (SysRoleMenu sysRoleMenu : sysRoleMenus) {
+//                Long meunId = sysRoleMenu.getMeunId();
+//                SysMenu sysMenu = sysMenuService.queryMenuByMenuId(meunId);
+//                String perCode = sysMenu.getPerCode();
+//                perCodeSet.add(perCode);
+//            }
+//        }
+//        return perCodeSet;
+//    }
 
 
 
@@ -166,6 +179,10 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser>
         sysUser.setUserPwd("******");
 
         List<String> userPermission = getUserPermission(userId);
+
+
+
+
 
         UserInfoVo userInfoVo = UserInfoVo.builder()
                 .sysUser(sysUser).permissionCodes(userPermission)
