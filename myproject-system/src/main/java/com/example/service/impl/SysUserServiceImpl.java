@@ -7,6 +7,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.domain.*;
 import com.example.domain.req.sysUser.SysUserQueryPageReq;
 import com.example.domain.vo.SysPerVo;
+import com.example.domain.vo.SysRoleVo;
 import com.example.domain.vo.UserInfoVo;
 import com.example.domain.vo.UserVo;
 import com.example.mapper.SysUserMapper;
@@ -46,6 +47,8 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser>
     private SysUserRoleService sysUserRoleService;
 
 
+    @Autowired
+    private SysRoleService sysRoleService;
 
 
     @Autowired
@@ -113,6 +116,9 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser>
 
 
         Long loginUserId = SecurityFrameworkUtils.getLoginUserId();
+        if (isAdmin(loginUserId)) {
+            //todo
+        }
 
         return sysMenuService.listPermissionCodesByUserId(userId);
     }
@@ -134,6 +140,13 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser>
 //        return perCodeSet;
 //    }
 
+
+    public boolean isAdmin(Long userId){
+
+        List<SysRoleVo> sysRoleVos = sysRoleService.listRoleByUserId(userId);
+        return sysRoleVos.stream().anyMatch(sysRoleVo -> sysRoleVo.getRoleName().equals("admin"));
+
+    }
 
 
 
@@ -179,6 +192,8 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser>
         sysUser.setUserPwd("******");
 
         List<String> userPermission = getUserPermission(userId);
+
+
 
 
 

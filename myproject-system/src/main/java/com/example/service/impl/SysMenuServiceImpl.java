@@ -55,12 +55,7 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu>
      */
     @Override
     public List<String> listPermissionCodesByUserId(Long userId) {
-
-
-
-
         return sysMenuMapper.listPermissionCodesByUserId(userId);
-
     }
 
     /**

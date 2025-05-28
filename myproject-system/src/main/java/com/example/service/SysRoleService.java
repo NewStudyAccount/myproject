@@ -9,6 +9,8 @@ import com.example.domain.req.SysRoleQueryPageReq;
 import com.example.domain.req.SysRoleUpdateReq;
 import com.example.domain.vo.SysRoleVo;
 
+import java.util.List;
+
 /**
 * @author QJJ
 * @description 针对表【sys_role(角色表)】的数据库操作Service
@@ -24,6 +26,8 @@ public interface SysRoleService extends IService<SysRole> {
 
 
     SysRoleVo queryByRoleId(Long roleId);
+
+    List<SysRoleVo> listRoleByUserId(Long userId);
 
     int addRole(SysRoleAddReq sysRole);
 

@@ -2,10 +2,12 @@ package com.example.service.impl;
 
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.conditions.query.LambdaQueryChainWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.domain.PageQuery;
 import com.example.domain.SysRole;
+import com.example.domain.SysUserRole;
 import com.example.domain.TableDataInfo;
 import com.example.domain.req.SysRoleAddReq;
 import com.example.domain.req.SysRoleQueryPageReq;
@@ -13,11 +15,14 @@ import com.example.domain.req.SysRoleUpdateReq;
 import com.example.domain.vo.SysRoleVo;
 import com.example.mapper.SysRoleMapper;
 import com.example.service.SysRoleService;
+import com.example.service.SysUserRoleService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -31,6 +36,9 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole>
 
     @Autowired
     private SysRoleMapper sysRoleMapper;
+
+    @Autowired
+    private SysUserRoleService sysUserRoleService;
 
     @Override
     public TableDataInfo<SysRole> queryRoleListPage(SysRoleQueryPageReq sysRoleQueryPageReq) {
@@ -54,6 +62,27 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole>
         SysRoleVo sysRoleVo = new SysRoleVo();
         BeanUtils.copyProperties(sysRole,sysRoleVo);
         return sysRoleVo;
+    }
+
+    @Override
+    public List<SysRoleVo> listRoleByUserId(Long userId) {
+        List<SysRoleVo> result = new ArrayList<>();
+        List<SysUserRole> sysUserRoles = sysUserRoleService.queryUserRoleList(userId);
+        if (CollectionUtils.isEmpty(sysUserRoles)) {
+            return new ArrayList<>();
+        }
+        for (SysUserRole sysUserRole : sysUserRoles) {
+            Long roleId = sysUserRole.getRoleId();
+            LambdaQueryChainWrapper<SysRole> lambdaQueryChainWrapper = this.lambdaQuery().eq(SysRole::getRoleId, roleId);
+
+            SysRole sysRole = sysRoleMapper.selectOne(lambdaQueryChainWrapper);
+            SysRoleVo sysRoleVo = new SysRoleVo();
+            BeanUtils.copyProperties(sysRole,sysRoleVo);
+            result.add(sysRoleVo);
+
+        }
+
+        return result;
     }
 
     @Override

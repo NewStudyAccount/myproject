@@ -27,12 +27,12 @@ public class SysMenu implements Serializable {
     /**
      * 菜单类型
      */
-    private String type;
+    private String menuType;
 
     /**
      * 排序
      */
-    private Integer sort;
+    private Integer menuSort;
 
     /**
      * 父级id
