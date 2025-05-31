@@ -34,7 +34,7 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu>
 
 
     @Override
-    public List<SysMenu> listDynamicRouter() {
+    public List<SysMenu> listMenu() {
         return sysMenuMapper.listMenu();
     }
 
@@ -44,7 +44,7 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu>
      * @return
      */
     @Override
-    public List<SysMenu> listDynamicRouterByUserId(Long userId) {
+    public List<SysMenu> listMenuByUserId(Long userId) {
         return sysMenuMapper.listMenuByUserId(userId);
     }
 

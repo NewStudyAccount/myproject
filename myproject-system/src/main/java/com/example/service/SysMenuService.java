@@ -13,9 +13,9 @@ import java.util.List;
 */
 public interface SysMenuService extends IService<SysMenu> {
 
-    List<SysMenu> listDynamicRouter();
+    List<SysMenu> listMenu();
 
-    List<SysMenu> listDynamicRouterByUserId(Long userId);
+    List<SysMenu> listMenuByUserId(Long userId);
 
     List<String> listPermissionCodesByUserId(Long userId);
 

@@ -6,7 +6,6 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.domain.*;
 import com.example.domain.req.sysUser.SysUserQueryPageReq;
-import com.example.domain.vo.SysPerVo;
 import com.example.domain.vo.SysRoleVo;
 import com.example.domain.vo.UserInfoVo;
 import com.example.domain.vo.UserVo;
@@ -17,14 +16,11 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
 import java.util.*;
-import java.util.concurrent.CompletableFuture;
-import java.util.stream.Collectors;
 
 /**
 * @author QJJ
@@ -194,17 +190,29 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser>
         List<String> userPermission = getUserPermission(userId);
 
 
-
-
-
-
+        List<SysMenu> sysMenus = listDynamicRouterByUserId(userId);
 
         UserInfoVo userInfoVo = UserInfoVo.builder()
                 .sysUser(sysUser).permissionCodes(userPermission)
+                .sysMenuListForDynamicRouter(sysMenus)
                 .build();
 
         return Collections.singletonList(userInfoVo);
 
+    }
+
+
+    public List<SysMenu> listDynamicRouterByUserId(Long userId){
+        List<SysMenu> sysMenus = new ArrayList<>();
+        if (isAdmin(userId)) {
+            sysMenus = sysMenuService.listMenu();
+        }else {
+            sysMenus = sysMenuService.listMenuByUserId(userId);
+        }
+        if (CollectionUtils.isEmpty(sysMenus)){
+            return Collections.emptyList();
+        }
+        return sysMenus.stream().filter(item -> "C".equals(item.getMenuType())).toList();
     }
 }
 

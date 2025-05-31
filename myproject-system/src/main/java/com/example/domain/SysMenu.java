@@ -25,7 +25,7 @@ public class SysMenu implements Serializable {
     private String perCode;
 
     /**
-     * 菜单类型
+     * 菜单类型 （M目录 C菜单 F按钮）
      */
     private String menuType;
 

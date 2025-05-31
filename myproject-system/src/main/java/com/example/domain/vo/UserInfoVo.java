@@ -17,5 +17,5 @@ public class UserInfoVo {
     List<String> permissionCodes;
 
     //用户的菜单，用于组装动态路由
-    List<DynamicRouterVo> sysMenuListForDynamicRouter;
+    List<SysMenu> sysMenuListForDynamicRouter;
 }
