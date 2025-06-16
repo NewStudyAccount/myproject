@@ -73,9 +73,8 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole>
         }
         for (SysUserRole sysUserRole : sysUserRoles) {
             Long roleId = sysUserRole.getRoleId();
-            LambdaQueryChainWrapper<SysRole> lambdaQueryChainWrapper = this.lambdaQuery().eq(SysRole::getRoleId, roleId);
+            SysRole sysRole = this.lambdaQuery().eq(SysRole::getRoleId, roleId).one();
 
-            SysRole sysRole = sysRoleMapper.selectOne(lambdaQueryChainWrapper);
             SysRoleVo sysRoleVo = new SysRoleVo();
             BeanUtils.copyProperties(sysRole,sysRoleVo);
             result.add(sysRoleVo);

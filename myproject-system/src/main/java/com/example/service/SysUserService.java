@@ -2,6 +2,7 @@ package com.example.service;
 
 
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.example.domain.SysMenu;
 import com.example.domain.SysUser;
 import com.example.domain.TableDataInfo;
 import com.example.domain.req.sysUser.SysUserQueryPageReq;
@@ -24,6 +25,8 @@ public interface SysUserService extends IService<SysUser> {
 //    List<String> queryUserInfoPermission(Long userId);
 
     List<UserInfoVo> queryUserInfo(Long userId);
+
+    List<SysMenu> queryUserDynamicRouter(Long userId);
 
 
 

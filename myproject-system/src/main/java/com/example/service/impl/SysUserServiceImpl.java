@@ -79,36 +79,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser>
     @Override
     public List<String> getUserPermission(Long userId) {
 
-//        //查询用户的所有角色 sys_user_role
-//        List<SysUserRole> sysUserRoles = sysUserRoleService.queryUserRoleList(userId);
-//
-//        //多线程查出角色的所有权限信息
-//        List<CompletableFuture<Set<String>>> futures = new ArrayList<>();
-//        for (SysUserRole sysUserRole : sysUserRoles) {
-//            CompletableFuture<Set<String>> future = CompletableFuture.supplyAsync(() -> {
-//                return getPerCodeByRoleId(sysUserRole.getRoleId());
-//            }, threadPoolTaskExecutor).exceptionally(ex->{
-//                // 处理异常情况
-//                log.error("获取权限编码失败",ex);
-//                return Collections.emptySet();
-//            });
-//            futures.add(future);
-//        }
-//
-//        // 等待所有任务完成
-//        CompletableFuture<Void> allFutures = CompletableFuture.allOf(futures.toArray(new CompletableFuture[0]));
-//
-//
-//        // 提交所有异步任务，并合并去重
-//        CompletableFuture<List<String>> futureResult = allFutures.thenApply(v -> {
-//            return futures.stream()
-//                    .map(CompletableFuture::join)
-//                    .flatMap(Set::stream)
-//                    .distinct()
-//                    .collect(Collectors.toList());
-//        });
-//
-//        return futureResult.join(); // 同步返回最终结果（根据实际需求决定是否异步）
+
 
 
         Long loginUserId = SecurityFrameworkUtils.getLoginUserId();
@@ -119,22 +90,6 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser>
         return sysMenuService.listPermissionCodesByUserId(userId);
     }
 
-//    public Set<String> getPerCodeByRoleId(Long roleId) {
-//
-//        Set<String> perCodeSet = new HashSet<>();
-//        //查角色-菜单表 role_menu
-//        List<SysRoleMenu> sysRoleMenus = sysRoleMenuService.listRoleMenuByRoleId(roleId);
-//
-//        if (!CollectionUtils.isEmpty(sysRoleMenus)){
-//            for (SysRoleMenu sysRoleMenu : sysRoleMenus) {
-//                Long meunId = sysRoleMenu.getMeunId();
-//                SysMenu sysMenu = sysMenuService.queryMenuByMenuId(meunId);
-//                String perCode = sysMenu.getPerCode();
-//                perCodeSet.add(perCode);
-//            }
-//        }
-//        return perCodeSet;
-//    }
 
 
     public boolean isAdmin(Long userId){
@@ -190,15 +145,19 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser>
         List<String> userPermission = getUserPermission(userId);
 
 
-        List<SysMenu> sysMenus = listDynamicRouterByUserId(userId);
 
         UserInfoVo userInfoVo = UserInfoVo.builder()
                 .sysUser(sysUser).permissionCodes(userPermission)
-                .sysMenuListForDynamicRouter(sysMenus)
                 .build();
 
         return Collections.singletonList(userInfoVo);
 
+    }
+
+    @Override
+    public List<SysMenu> queryUserDynamicRouter(Long userId) {
+        List<SysMenu> sysMenus = listDynamicRouterByUserId(userId);
+        return sysMenus;
     }
 
 

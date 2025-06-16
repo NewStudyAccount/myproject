@@ -2,15 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="generator.mapper.SysRoleMenuMapper">
+<mapper namespace="com.example.mapper.SysRoleMenuMapper">
 
-    <resultMap id="BaseResultMap" type="generator.domain.SysRoleMenu">
-            <id property="id" column="id" />
-            <result property="roleId" column="role_id" />
-            <result property="meunId" column="meun_id" />
-    </resultMap>
 
-    <sql id="Base_Column_List">
-        id,role_id,meun_id
-    </sql>
 </mapper>
