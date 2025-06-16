@@ -10,6 +10,7 @@ import org.springframework.security.authentication.ProviderManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.AuthenticationEntryPoint;
@@ -68,12 +69,13 @@ public class SecurityConfig {
 //                .anyRequest().authenticated()
                 .anyRequest().permitAll()
                 )
-                .csrf(csrf->csrf.disable())
-                .formLogin(form->form.disable())
-                .sessionManagement(session->session.disable())
+                .csrf(AbstractHttpConfigurer::disable)
+                .formLogin(AbstractHttpConfigurer::disable)
+                .sessionManagement(AbstractHttpConfigurer::disable)
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)  // 先配置过滤器
                 .exceptionHandling(execption->execption.authenticationEntryPoint(authenticationEntryPoint)  // 后配置异常处理
-                        .accessDeniedHandler(accessDeniedHandler));
+                        .accessDeniedHandler(accessDeniedHandler))
+                .cors(AbstractHttpConfigurer::disable);
 
         return http.build();
     }

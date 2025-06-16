@@ -1,16 +1,16 @@
 
 logging:
   config: classpath:logback.xml
-  level:
-    org:
-      springframework:
-        security:
-          DEBUG
-        # 开启过滤器链日志
-        web:
-          filter:
-            CompositeFilter:
-              TRACE
+#  level:
+#    org:
+#      springframework:
+#        security:
+#          DEBUG
+#        # 开启过滤器链日志
+#        web:
+#          filter:
+#            CompositeFilter:
+#              TRACE
 server:
   port: 8080
 

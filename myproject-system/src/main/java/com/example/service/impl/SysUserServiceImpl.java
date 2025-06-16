@@ -84,7 +84,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser>
 
         Long loginUserId = SecurityFrameworkUtils.getLoginUserId();
         if (isAdmin(loginUserId)) {
-            //todo
+            //todo 获取所有角色
         }
 
         return sysMenuService.listPermissionCodesByUserId(userId);
