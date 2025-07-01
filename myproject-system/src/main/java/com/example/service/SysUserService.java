@@ -24,7 +24,7 @@ public interface SysUserService extends IService<SysUser> {
 
 //    List<String> queryUserInfoPermission(Long userId);
 
-    List<UserInfoVo> queryUserInfo(Long userId);
+    UserInfoVo queryUserInfo(Long userId);
 
     List<SysMenu> queryUserDynamicRouter(Long userId);
 

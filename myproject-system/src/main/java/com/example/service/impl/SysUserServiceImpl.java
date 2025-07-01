@@ -137,7 +137,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser>
      * @param userId
      */
     @Override
-    public List<UserInfoVo> queryUserInfo(Long userId) {
+    public UserInfoVo queryUserInfo(Long userId) {
 
         SysUser sysUser = sysUserMapper.selectById(userId);
         sysUser.setUserPwd("******");
@@ -150,7 +150,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser>
                 .sysUser(sysUser).permissionCodes(userPermission)
                 .build();
 
-        return Collections.singletonList(userInfoVo);
+        return userInfoVo;
 
     }
 

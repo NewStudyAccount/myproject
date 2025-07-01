@@ -29,8 +29,8 @@ public class SysUserController {
     @Operation(summary = "用户登陆后查询用户信息")
     @PostMapping("/queryUserInfo")
     public Response<?> queryUserInfo(@RequestBody SysUserQueryReq sysUserQueryReq){
-        List<UserInfoVo> userInfoVos = sysUserService.queryUserInfo(sysUserQueryReq.getUserId());
-        return Response.success(userInfoVos);
+        UserInfoVo userInfoVo = sysUserService.queryUserInfo(sysUserQueryReq.getUserId());
+        return Response.success(userInfoVo);
     }
 
     @Operation(summary = "查询用户动态路由信息")
