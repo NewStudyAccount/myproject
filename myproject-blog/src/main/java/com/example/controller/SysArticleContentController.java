@@ -1,7 +1,6 @@
 package com.example.controller;
 
 import com.example.domain.Response;
-import com.example.domain.dao.SysArticleContent;
 import com.example.domain.req.SysArticleContentReq;
 import com.example.domain.vo.SysArticleContentVo;
 import com.example.service.SysArticleContentService;

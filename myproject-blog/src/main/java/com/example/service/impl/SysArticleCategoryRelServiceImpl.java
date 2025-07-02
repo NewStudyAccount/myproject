@@ -1,10 +1,13 @@
 package com.example.service.impl;
 
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.example.domain.SysArticleCategoryRel;
+import com.example.domain.pojo.SysArticleCategoryRel;
 import com.example.mapper.SysArticleCategoryRelMapper;
 import com.example.service.SysArticleCategoryRelService;
+import com.example.utils.SnowflakeIdGenerator;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,14 +22,23 @@ public class SysArticleCategoryRelServiceImpl extends ServiceImpl<SysArticleCate
     implements SysArticleCategoryRelService {
 
 
+    @Autowired
+    private SysArticleCategoryRelMapper sysArticleCategoryRelMapper;
+
     @Override
-    public List<SysArticleCategoryRel> getArticleCategoryRelList(SysArticleCategoryRel sysArticleCategoryRel) {
-        return List.of();
+    public List<SysArticleCategoryRel> getArticleCategoryRelList(Long articleId) {
+        LambdaQueryWrapper<SysArticleCategoryRel> lambdaQueryWrapper = new LambdaQueryWrapper<>();
+        lambdaQueryWrapper.eq(SysArticleCategoryRel::getArticleId,articleId);
+        List<SysArticleCategoryRel> sysArticleCategoryRels = sysArticleCategoryRelMapper.selectList(lambdaQueryWrapper);
+
+        return sysArticleCategoryRels;
     }
 
     @Override
     public int addArticleCategoryRel(SysArticleCategoryRel sysArticleCategoryRel) {
-        return 0;
+        SnowflakeIdGenerator snowflakeIdGenerator = new SnowflakeIdGenerator(1);
+        sysArticleCategoryRel.setId(snowflakeIdGenerator.nextId());
+        return sysArticleCategoryRelMapper.insert(sysArticleCategoryRel);
     }
 
     @Override

@@ -1,4 +1,4 @@
-package com.example.domain;
+package com.example.domain.pojo;
 
 
 import com.baomidou.mybatisplus.annotation.IdType;

@@ -2,7 +2,7 @@ package com.example.service;
 
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.example.domain.SysArticleContent;
+import com.example.domain.pojo.SysArticleContent;
 import com.example.domain.vo.SysArticleContentVo;
 
 /**

@@ -2,7 +2,7 @@ package com.example.service.impl;
 
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.example.domain.SysArticle;
+import com.example.domain.pojo.SysArticle;
 import com.example.mapper.SysArticleMapper;
 import com.example.service.SysArticleService;
 import org.springframework.stereotype.Service;
@@ -27,6 +27,11 @@ public class SysArticleServiceImpl extends ServiceImpl<SysArticleMapper, SysArti
         this.baseMapper.insert(sysArticle);
 
 
+        return 0;
+    }
+
+    @Override
+    public int deleteArticle(Long articleId) {
         return 0;
     }
 }

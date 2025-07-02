@@ -2,7 +2,7 @@ package com.example.service;
 
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.example.domain.SysArticle;
+import com.example.domain.pojo.SysArticle;
 
 /**
 * @author QJJ
@@ -13,4 +13,5 @@ public interface SysArticleService extends IService<SysArticle> {
 
     public int saveArticle(SysArticle sysArticle);
 
+    public int deleteArticle(Long articleId);
 }

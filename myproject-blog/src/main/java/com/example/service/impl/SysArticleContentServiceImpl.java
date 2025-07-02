@@ -2,7 +2,7 @@ package com.example.service.impl;
 
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.example.domain.SysArticleContent;
+import com.example.domain.pojo.SysArticleContent;
 import com.example.domain.vo.SysArticleContentVo;
 import com.example.mapper.SysArticleContentMapper;
 import com.example.service.SysArticleContentService;

@@ -2,7 +2,7 @@ package com.example.mapper;
 
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.example.domain.SysCategory;
+import com.example.domain.pojo.SysCategory;
 
 /**
 * @author QJJ
