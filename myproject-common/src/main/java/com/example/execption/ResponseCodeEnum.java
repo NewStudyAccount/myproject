@@ -18,8 +18,8 @@ public enum ResponseCodeEnum implements BaseExceptionInterface {
     ;
 
     // 异常码
-    private String errorCode;
+    private final String errorCode;
     // 错误信息
-    private String errorMessage;
+    private final String errorMessage;
 
 }

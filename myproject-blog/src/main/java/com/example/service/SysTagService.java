@@ -6,6 +6,8 @@ import com.example.domain.pojo.SysTag;
 import com.example.domain.TableDataInfo;
 import com.example.domain.req.SysTagQueryPageReq;
 
+import java.util.List;
+
 /**
 * @author QJJ
 * @description 针对表【sys_tag(标签)】的数据库操作Service
@@ -13,6 +15,8 @@ import com.example.domain.req.SysTagQueryPageReq;
 */
 public interface SysTagService extends IService<SysTag> {
     TableDataInfo<SysTag> queryTagListPage(SysTagQueryPageReq sysTagQueryPageReq);
+
+    List<SysTag> queryTagList();
 
     int addTag(SysTag sysTag);
 

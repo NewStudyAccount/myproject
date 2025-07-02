@@ -7,6 +7,7 @@ import com.example.domain.vo.SysArticleContentVo;
 import com.example.mapper.SysArticleContentMapper;
 import com.example.service.SysArticleContentService;
 import com.example.utils.MarkDownUtil;
+import com.example.utils.SnowflakeIdGenerator;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
@@ -27,6 +28,8 @@ public class SysArticleContentServiceImpl extends ServiceImpl<SysArticleContentM
      */
     @Override
     public int saveArticleContent(SysArticleContent sysArticleContent) {
+        SnowflakeIdGenerator snowflakeIdGenerator = new SnowflakeIdGenerator(1);
+        sysArticleContent.setId(snowflakeIdGenerator.nextId());
         return this.baseMapper.insert(sysArticleContent);
     }
 

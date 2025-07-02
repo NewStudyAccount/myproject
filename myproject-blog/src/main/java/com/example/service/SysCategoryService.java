@@ -6,6 +6,8 @@ import com.example.domain.pojo.SysCategory;
 import com.example.domain.TableDataInfo;
 import com.example.domain.req.SysCategoryQueryPageReq;
 
+import java.util.List;
+
 /**
 * @author QJJ
 * @description 针对表【sys_category(文章分类)】的数据库操作Service
@@ -13,6 +15,8 @@ import com.example.domain.req.SysCategoryQueryPageReq;
 */
 public interface SysCategoryService extends IService<SysCategory> {
     TableDataInfo<SysCategory> queryCategoryListPage(SysCategoryQueryPageReq sysCategoryQueryPageReq);
+
+    List<SysCategory> queryCategoryList();
 
     int addCategory(SysCategory sysCategory);
 

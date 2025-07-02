@@ -13,7 +13,7 @@ import java.util.List;
 */
 public interface SysArticleCategoryRelService extends IService<SysArticleCategoryRel> {
 
-    List<SysArticleCategoryRel> getArticleCategoryRelList(Long articleId);
+    List<SysArticleCategoryRel> queryArticleCategoryRelList(Long articleId);
 
     int addArticleCategoryRel(SysArticleCategoryRel sysArticleCategoryRel);
 

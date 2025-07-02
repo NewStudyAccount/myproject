@@ -26,7 +26,7 @@ public class SysArticleCategoryRelServiceImpl extends ServiceImpl<SysArticleCate
     private SysArticleCategoryRelMapper sysArticleCategoryRelMapper;
 
     @Override
-    public List<SysArticleCategoryRel> getArticleCategoryRelList(Long articleId) {
+    public List<SysArticleCategoryRel> queryArticleCategoryRelList(Long articleId) {
         LambdaQueryWrapper<SysArticleCategoryRel> lambdaQueryWrapper = new LambdaQueryWrapper<>();
         lambdaQueryWrapper.eq(SysArticleCategoryRel::getArticleId,articleId);
         List<SysArticleCategoryRel> sysArticleCategoryRels = sysArticleCategoryRelMapper.selectList(lambdaQueryWrapper);

@@ -17,7 +17,6 @@ public class SysArticleContent implements Serializable {
     /**
      * 文章内容id
      */
-    @TableId(type = IdType.AUTO)
     private Long id;
 
     /**

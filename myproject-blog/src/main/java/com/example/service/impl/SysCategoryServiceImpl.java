@@ -12,6 +12,8 @@ import com.example.utils.SnowflakeIdGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
 * @author QJJ
 * @description 针对表【sys_category(文章分类)】的数据库操作Service实现
@@ -29,6 +31,11 @@ public class SysCategoryServiceImpl extends ServiceImpl<SysCategoryMapper, SysCa
         Page<SysCategory> sysCategoryPage = sysCategoryMapper.selectPage(sysCategoryQueryPageReq.getPageQuery().build(), null);
         TableDataInfo<SysCategory> build = TableDataInfo.build(sysCategoryPage);
         return build;
+    }
+
+    @Override
+    public List<SysCategory> queryCategoryList() {
+        return sysCategoryMapper.selectList(null);
     }
 
     @Override
