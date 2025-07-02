@@ -2,6 +2,7 @@ package com.example.controller;
 
 import com.example.domain.Response;
 import com.example.domain.pojo.SysArticleContent;
+import com.example.domain.req.SysArticleContentReq;
 import com.example.domain.vo.SysArticleContentVo;
 import com.example.service.SysArticleContentService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -29,9 +30,9 @@ public class SysArticleContentController {
 
     @Operation(summary = "保存文章内容接口")
     @PostMapping("/save")
-    public Response saveArticleContent(@RequestBody SysArticleContent sysArticleContent) {
+    public Response saveArticleContent(@RequestBody SysArticleContentReq sysArticleContentReq) {
 
-        int result = sysArticleContentService.saveArticleContent(sysArticleContent);
+        int result = sysArticleContentService.saveArticleContent(sysArticleContentReq);
 
         return Response.success(result);
     }

@@ -3,6 +3,7 @@ package com.example.controller;
 
 import com.example.domain.Response;
 import com.example.domain.pojo.SysArticleTagRel;
+import com.example.domain.req.SysArticleTagRelReq;
 import com.example.service.SysArticleTagRelService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -26,8 +27,8 @@ public class SysArticleTagRelController {
 
     @Operation(summary = "添加文章标签关系接口")
     @PostMapping("/addArticleTagRel")
-    public Response<?> addArticleTagRel(@RequestBody SysArticleTagRel sysArticleTagRel) {
-        return Response.success(sysArticleTagRelService.addArticleTagRel(sysArticleTagRel));
+    public Response<?> addArticleTagRel(@RequestBody SysArticleTagRelReq  sysArticleTagRelReq) {
+        return Response.success(sysArticleTagRelService.addArticleTagRel(sysArticleTagRelReq));
     }
 
 }

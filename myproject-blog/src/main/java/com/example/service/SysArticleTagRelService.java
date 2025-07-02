@@ -3,6 +3,7 @@ package com.example.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.example.domain.pojo.SysArticleTagRel;
+import com.example.domain.req.SysArticleTagRelReq;
 import com.example.domain.vo.SysArticleTagRelVo;
 
 import java.util.List;
@@ -16,7 +17,7 @@ public interface SysArticleTagRelService extends IService<SysArticleTagRel> {
 
     List<SysArticleTagRel> queryArticleTagRelList(Long articleId);
 
-    int addArticleTagRel(SysArticleTagRel sysArticleTagRel);
+    int addArticleTagRel(SysArticleTagRelReq sysArticleTagRelReq);
 
     int deleteArticleTagRel(Long id);
 

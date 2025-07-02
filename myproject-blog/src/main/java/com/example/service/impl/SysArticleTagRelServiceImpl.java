@@ -4,6 +4,7 @@ package com.example.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.domain.pojo.SysArticleTagRel;
+import com.example.domain.req.SysArticleTagRelReq;
 import com.example.domain.vo.SysArticleTagRelVo;
 import com.example.mapper.SysArticleTagRelMapper;
 import com.example.service.SysArticleTagRelService;
@@ -47,8 +48,11 @@ public class SysArticleTagRelServiceImpl extends ServiceImpl<SysArticleTagRelMap
     }
 
     @Override
-    public int addArticleTagRel(SysArticleTagRel sysArticleTagRel) {
+    public int addArticleTagRel(SysArticleTagRelReq sysArticleTagRelReq) {
         SnowflakeIdGenerator snowflakeIdGenerator = new SnowflakeIdGenerator(1);
+        SysArticleTagRel sysArticleTagRel = new SysArticleTagRel();
+
+        BeanUtils.copyProperties(sysArticleTagRelReq,sysArticleTagRel);
         sysArticleTagRel.setId(snowflakeIdGenerator.nextId());
         return sysArticleTagRelMapper.insert(sysArticleTagRel);
     }

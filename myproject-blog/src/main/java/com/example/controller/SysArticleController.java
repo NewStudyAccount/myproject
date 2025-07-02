@@ -2,6 +2,7 @@ package com.example.controller;
 
 import com.example.domain.Response;
 import com.example.domain.pojo.SysArticle;
+import com.example.domain.req.SysArticleReq;
 import com.example.service.SysArticleService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,7 @@ public class SysArticleController {
     private SysArticleService sysArticleService;
 
     @RequestMapping("/save")
-    public Response<?> saveArticle(SysArticle sysArticle){
-        return Response.success(sysArticleService.saveArticle(sysArticle));
+    public Response<?> saveArticle(SysArticleReq sysArticleReq){
+        return Response.success(sysArticleService.saveArticle(sysArticleReq));
     }
 }

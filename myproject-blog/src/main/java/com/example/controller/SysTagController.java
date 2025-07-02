@@ -4,6 +4,7 @@ import com.example.domain.Response;
 import com.example.domain.TableDataInfo;
 import com.example.domain.pojo.SysTag;
 import com.example.domain.req.SysTagQueryPageReq;
+import com.example.domain.req.SysTagReq;
 import com.example.service.SysTagService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -36,8 +37,8 @@ public class SysTagController {
 
     @Operation(summary = "添加tag标签接口")
     @PostMapping("/addTag")
-    public Response<?> addTag(@RequestBody SysTag sysTag){
-        int i = sysTagService.addTag(sysTag);
+    public Response<?> addTag(@RequestBody SysTagReq sysTagReq){
+        int i = sysTagService.addTag(sysTagReq);
         return Response.success(i);
     }
 

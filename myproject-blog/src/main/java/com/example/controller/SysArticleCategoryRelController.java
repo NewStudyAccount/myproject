@@ -3,6 +3,7 @@ package com.example.controller;
 
 import com.example.domain.Response;
 import com.example.domain.pojo.SysArticleCategoryRel;
+import com.example.domain.req.SysArticleCategoryRelReq;
 import com.example.service.SysArticleCategoryRelService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -29,8 +30,8 @@ public class SysArticleCategoryRelController {
 
     @Operation(summary = "添加文章分类关系接口")
     @PostMapping("/addArticleCategoryRel")
-    public Response<?> addArticleCategoryRel(@RequestBody SysArticleCategoryRel sysArticleCategoryRel) {
-        int result = sysArticleCategoryRelService.addArticleCategoryRel(sysArticleCategoryRel);
+    public Response<?> addArticleCategoryRel(@RequestBody SysArticleCategoryRelReq sysArticleCategoryRelReq) {
+        int result = sysArticleCategoryRelService.addArticleCategoryRel(sysArticleCategoryRelReq);
         return Response.success(result);
     }
 

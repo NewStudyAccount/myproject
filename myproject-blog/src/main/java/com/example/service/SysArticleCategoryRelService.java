@@ -3,6 +3,7 @@ package com.example.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.example.domain.pojo.SysArticleCategoryRel;
+import com.example.domain.req.SysArticleCategoryRelReq;
 
 import java.util.List;
 
@@ -15,7 +16,7 @@ public interface SysArticleCategoryRelService extends IService<SysArticleCategor
 
     List<SysArticleCategoryRel> queryArticleCategoryRelList(Long articleId);
 
-    int addArticleCategoryRel(SysArticleCategoryRel sysArticleCategoryRel);
+    int addArticleCategoryRel(SysArticleCategoryRelReq sysArticleCategoryRelReq);
 
     int deleteArticleCategoryRel(SysArticleCategoryRel sysArticleCategoryRel);
 

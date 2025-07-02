@@ -6,12 +6,14 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.domain.pojo.SysTag;
 import com.example.domain.TableDataInfo;
 import com.example.domain.req.SysTagQueryPageReq;
+import com.example.domain.req.SysTagReq;
 import com.example.execption.BizException;
 import com.example.execption.ResponseCodeEnum;
 import com.example.mapper.SysTagMapper;
 import com.example.service.SysTagService;
 import com.example.utils.SnowflakeIdGenerator;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -42,10 +44,13 @@ public class SysTagServiceImpl extends ServiceImpl<SysTagMapper, SysTag>
     }
 
     @Override
-    public int addTag(SysTag sysTag) {
+    public int addTag(SysTagReq sysTagReq) {
         try {
             SnowflakeIdGenerator idGenerator = new SnowflakeIdGenerator(1);
             long seqId = idGenerator.nextId();
+            SysTag sysTag = new SysTag();
+
+            BeanUtils.copyProperties(sysTagReq, sysTag);
             sysTag.setId(seqId);
             return sysTagMapper.insert(sysTag);
         } catch (Exception e) {

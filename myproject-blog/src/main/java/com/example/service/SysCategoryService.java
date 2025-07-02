@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.example.domain.pojo.SysCategory;
 import com.example.domain.TableDataInfo;
 import com.example.domain.req.SysCategoryQueryPageReq;
+import com.example.domain.req.SysCategoryReq;
 
 import java.util.List;
 
@@ -18,7 +19,7 @@ public interface SysCategoryService extends IService<SysCategory> {
 
     List<SysCategory> queryCategoryList();
 
-    int addCategory(SysCategory sysCategory);
+    int addCategory(SysCategoryReq sysCategoryReq);
 
     int deleteCategory(Long categoryId);
 

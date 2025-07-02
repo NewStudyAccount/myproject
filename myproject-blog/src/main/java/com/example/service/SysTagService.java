@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.example.domain.pojo.SysTag;
 import com.example.domain.TableDataInfo;
 import com.example.domain.req.SysTagQueryPageReq;
+import com.example.domain.req.SysTagReq;
 
 import java.util.List;
 
@@ -18,7 +19,7 @@ public interface SysTagService extends IService<SysTag> {
 
     List<SysTag> queryTagList();
 
-    int addTag(SysTag sysTag);
+    int addTag(SysTagReq sysTagReq);
 
     int deleteTag(Long tagId);
 

@@ -6,9 +6,11 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.domain.TableDataInfo;
 import com.example.domain.pojo.SysCategory;
 import com.example.domain.req.SysCategoryQueryPageReq;
+import com.example.domain.req.SysCategoryReq;
 import com.example.mapper.SysCategoryMapper;
 import com.example.service.SysCategoryService;
 import com.example.utils.SnowflakeIdGenerator;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -39,9 +41,11 @@ public class SysCategoryServiceImpl extends ServiceImpl<SysCategoryMapper, SysCa
     }
 
     @Override
-    public int addCategory(SysCategory sysCategory) {
+    public int addCategory(SysCategoryReq sysCategoryReq) {
         SnowflakeIdGenerator snowflakeIdGenerator = new SnowflakeIdGenerator(1);
         long seqId = snowflakeIdGenerator.nextId();
+        SysCategory sysCategory = new SysCategory();
+        BeanUtils.copyProperties(sysCategoryReq,sysCategory);
         sysCategory.setId(seqId);
         return sysCategoryMapper.insert(sysCategory);
     }

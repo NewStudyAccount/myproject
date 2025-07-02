@@ -5,6 +5,7 @@ import com.example.domain.Response;
 import com.example.domain.TableDataInfo;
 import com.example.domain.pojo.SysCategory;
 import com.example.domain.req.SysCategoryQueryPageReq;
+import com.example.domain.req.SysCategoryReq;
 import com.example.service.SysCategoryService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -37,8 +38,8 @@ public class SysCategoryController {
 
     @Operation(summary = "添加分类接口")
     @PostMapping("/addCategory")
-    public Response<?> addCategory(@RequestBody SysCategory sysCategory) {
-        return Response.success(sysCategoryService.addCategory(sysCategory));
+    public Response<?> addCategory(@RequestBody SysCategoryReq sysCategoryReq) {
+        return Response.success(sysCategoryService.addCategory(sysCategoryReq));
     }
 
 
