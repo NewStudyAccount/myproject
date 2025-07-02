@@ -2,7 +2,8 @@ package com.example.service;
 
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.example.domain.SysArticleContent;
+import com.example.domain.pojo.SysArticleContent;
+import com.example.domain.req.SysArticleContentReq;
 import com.example.domain.vo.SysArticleContentVo;
 
 /**
@@ -12,7 +13,7 @@ import com.example.domain.vo.SysArticleContentVo;
 */
 public interface SysArticleContentService extends IService<SysArticleContent> {
 
-    public int saveArticleContent(SysArticleContent sysArticleContent);
+    public int saveArticleContent(SysArticleContentReq sysArticleContentReq);
 
     public SysArticleContent getArticleContent(Long articleId);
 

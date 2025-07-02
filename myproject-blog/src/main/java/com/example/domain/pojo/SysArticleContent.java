@@ -1,4 +1,4 @@
-package com.example.domain;
+package com.example.domain.pojo;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
@@ -8,27 +8,26 @@ import java.io.Serializable;
 import lombok.Data;
 
 /**
- * 标签
- * @TableName sys_tag
+ * 文章内容
+ * @TableName sys_article_content
  */
-@TableName(value ="sys_tag")
+@TableName(value ="sys_article_content")
 @Data
-public class SysTag implements Serializable {
+public class SysArticleContent implements Serializable {
     /**
-     * 
+     * 文章内容id
      */
-    @TableId(type = IdType.AUTO)
     private Long id;
 
     /**
-     * 标签名
+     * 文章id
      */
-    private String name;
+    private Long articleId;
 
     /**
-     * 
+     * 文章内容
      */
-    private String idDeleted;
+    private String content;
 
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;

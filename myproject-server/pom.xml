@@ -26,6 +26,12 @@
 
         <dependency>
             <groupId>com.example</groupId>
+            <artifactId>myproject-blog</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.example</groupId>
             <artifactId>myproject-system</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>

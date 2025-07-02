@@ -1,12 +1,22 @@
 package com.example.domain.req;
 
 
-import lombok.AllArgsConstructor;
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 public class SysArticleReq {
+
+    /**
+     * 文章名
+     */
+    private String title;
+
+    /**
+     * 预览图
+     */
+    private String cover;
+
 }

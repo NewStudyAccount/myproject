@@ -1,34 +1,46 @@
-package com.example.domain;
+package com.example.domain.pojo;
+
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import java.io.Serializable;
 import lombok.Data;
 
+import java.io.Serializable;
+
 /**
- * 文章分类
- * @TableName sys_category
+ * 文章表
+ * @TableName sys_article
  */
-@TableName(value ="sys_category")
+@TableName(value ="sys_article")
 @Data
-public class SysCategory implements Serializable {
+public class SysArticle implements Serializable {
     /**
-     * 分类id
+     * 文章id
      */
     @TableId(type = IdType.AUTO)
     private Long id;
 
     /**
-     * 分类名
+     * 文章名
      */
-    private String name;
+    private String title;
+
+    /**
+     * 预览图
+     */
+    private String cover;
 
     /**
      * 删除标志
      */
     private String isDeleted;
+
+    /**
+     * 阅读次数
+     */
+    private Integer readNum;
 
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;

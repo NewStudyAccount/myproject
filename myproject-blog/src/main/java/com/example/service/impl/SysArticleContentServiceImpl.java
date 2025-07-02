@@ -2,11 +2,13 @@ package com.example.service.impl;
 
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.example.domain.SysArticleContent;
+import com.example.domain.pojo.SysArticleContent;
+import com.example.domain.req.SysArticleContentReq;
 import com.example.domain.vo.SysArticleContentVo;
 import com.example.mapper.SysArticleContentMapper;
 import com.example.service.SysArticleContentService;
 import com.example.utils.MarkDownUtil;
+import com.example.utils.SnowflakeIdGenerator;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
@@ -22,11 +24,15 @@ public class SysArticleContentServiceImpl extends ServiceImpl<SysArticleContentM
 
     /**
      * 新增文章信息
-     * @param sysArticleContent
+     * @param sysArticleContentReq
      * @return
      */
     @Override
-    public int saveArticleContent(SysArticleContent sysArticleContent) {
+    public int saveArticleContent(SysArticleContentReq sysArticleContentReq) {
+        SnowflakeIdGenerator snowflakeIdGenerator = new SnowflakeIdGenerator(1);
+        SysArticleContent sysArticleContent = new SysArticleContent();
+        BeanUtils.copyProperties(sysArticleContentReq,sysArticleContent);
+        sysArticleContent.setId(snowflakeIdGenerator.nextId());
         return this.baseMapper.insert(sysArticleContent);
     }
 

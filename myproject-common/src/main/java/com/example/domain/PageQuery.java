@@ -2,6 +2,7 @@ package com.example.domain;
 
 import com.baomidou.mybatisplus.core.metadata.OrderItem;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import org.apache.commons.lang3.StringUtils;
 
@@ -24,11 +25,13 @@ public class PageQuery implements Serializable {
     /**
      * 分页大小
      */
+    @JsonProperty("PAGE_SIZE")
     private Integer pageSize;
 
     /**
      * 当前页数
      */
+    @JsonProperty("PAGE_NUM")
     private Integer pageNum;
 
     /**
